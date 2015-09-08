@@ -433,8 +433,14 @@ class wikiHandler(ContentHandler):
         self.timeDelta=self.timeCheck-self.start
         print >> sys.stderr, "\n"
         print >> sys.stderr, "File successfully parsed..."
-        print >> sys.stderr, "page %d (%f pags./sec.), revision %d (%f revs./sec.)" % (self.page_num,\
-        float(self.page_num)/self.timeDelta.seconds, self.rev_num, float(self.rev_num)/self.timeDelta.seconds)
+        if self.timeDelta.seconds==0:
+            print >> sys.stderr, "page %d (%f pags./sec.), revision %d (%f revs./sec.)" % \
+                                 (self.page_num, 1e6*float(self.page_num)/self.timeDelta.microseconds,
+                                  self.rev_num, 1e6*float(self.rev_num)/self.timeDelta.microseconds)
+        else:
+            print >> sys.stderr, "page %d (%f pags./sec.), revision %d (%f revs./sec.)" % \
+                                 (self.page_num, float(self.page_num)/self.timeDelta.seconds,
+                                  self.rev_num, float(self.rev_num)/self.timeDelta.seconds)
  
 ##Main zone
 if __name__ == '__main__':
