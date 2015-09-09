@@ -29,6 +29,23 @@
         <esaIndexPath>ndx_en</esaIndexPath>
         <minTermFreq>3</minTermFreq>
     </ESAIndexBuilder:en>
+    <ESAIndexer>
+        <articleDb>mysql://root:123456@localhost/wiki</articleDb>
+        <esaDb>mysql://root:123456@localhost/wiki</esaDb>
+        <destDb>mysql://root:123456@localhost/wiki</destDb>
+        <destTableName>esa_vector_index</destTableName>
+        <esaVectorSize>100</esaVectorSize>
+        <lang>en</lang>
+        <stopWordsFile>res/stopwords.en.txt</stopWordsFile>
+        <stemmerClass>org.tartarus.snowball.ext.EnglishStemmer</stemmerClass>
+        <query>
+            <articleIter>
+                SELECT page_id AS id\, page_id\, page.page_title\, text.old_text AS content
+                FROM page_concepts AS page LEFT JOIN revision ON page_id = rev_page
+                LEFT JOIN text ON rev_text_id = old_id WHERE page_id > ? ORDER BY page_id LIMIT 100
+            </articleIter>
+        </query>
+    </ESAIndexer>
     <ConfigId:ESAAnalyzer>en</ConfigId:ESAAnalyzer>
     <ESAAnalyzer:kw>
         <db>sqlite://root:root@localhost/esa_zh.db</db>
