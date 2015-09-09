@@ -132,3 +132,15 @@ CREATE TABLE `langlinks` (
   KEY `ll_from2` (`ll_from`),
   KEY `ll_lang2` (`ll_lang`)
 );
+
+CREATE TABLE `redirect` (
+  `rd_from` int(8) unsigned NOT NULL DEFAULT '0',
+  `rd_namespace` int(11) NOT NULL DEFAULT '0',
+  `rd_title` varbinary(255) NOT NULL DEFAULT '',
+  `rd_interwiki` varbinary(32) DEFAULT NULL,
+  `rd_fragment` varbinary(255) DEFAULT NULL,
+  PRIMARY KEY (`rd_from`),
+  KEY `rd_ns_title` (`rd_namespace`,`rd_title`,`rd_from`),
+  KEY `index3` (`rd_title`),
+  KEY `index4` (`rd_from`)
+);
