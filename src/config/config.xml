@@ -22,13 +22,13 @@
             </articleIter>
         </query>
     </ArticleIndexer>
-    <ConfigId:ESAIndexBuilder>zh</ConfigId:ESAIndexBuilder>
-    <ESAIndexBuilder:kw>
-        <lang>zh</lang>
-        <db>sqlite://root:root@localhost/esa_zh.db</db>
-        <esaIndexPath>/xdisk/tmp/esa_ndx_zh/</esaIndexPath>
+    <ConfigId:ESAIndexBuilder>en</ConfigId:ESAIndexBuilder>
+    <ESAIndexBuilder:en>
+        <lang>en</lang>
+        <db>mysql://root:123456@localhost/wiki</db>
+        <esaIndexPath>ndx_en</esaIndexPath>
         <minTermFreq>3</minTermFreq>
-    </ESAIndexBuilder:kw>
+    </ESAIndexBuilder:en>
     <ConfigId:ESAAnalyzer>en</ConfigId:ESAAnalyzer>
     <ESAAnalyzer:kw>
         <db>sqlite://root:root@localhost/esa_zh.db</db>
