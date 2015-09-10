@@ -157,7 +157,7 @@ if __name__ == "__main__":
     e = PrepareIndex(index_table = sys.argv[1],
                      host = "localhost", 
                      user = "root", 
-                     passwd = "quaeCi9f", 
-                     db = "esa_index")
+                     passwd = "123456",
+                     db = "wiki")
     e.prepare(index_name)
     

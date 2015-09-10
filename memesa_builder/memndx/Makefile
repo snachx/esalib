@@ -1,4 +1,4 @@
-CFLAGS = -I../hashtable -g3 -lm
+CFLAGS = -I../hashtable -g3
 mysql_CFLAGS = $(CFLAGS) $$(mysql_config --cflags) -shared -fPIC -g3
 
 SEARCHER_BIN = searcher
@@ -14,7 +14,7 @@ all: $(OUTPUT)
 clean:
 	rm -f $(OUTPUT)
 
-$(SEARCHER_BIN): searcher.c searcher.h ../hashtable/hashtable.o bits.h
+$(SEARCHER_BIN): searcher.c searcher.h ../hashtable/hashtable.o bits.h -lm
 
 $(BUILDER_BIN): builder.c
 

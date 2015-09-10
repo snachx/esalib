@@ -32,7 +32,7 @@ int min(int a, int b) {
 		return a;
 }
 
-inline float cmp_float(float a, float b) {
+float cmp_float(float a, float b) {
 	if(a < b )
 		return 1;
 	else if(a > b)
