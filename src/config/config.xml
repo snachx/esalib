@@ -47,22 +47,10 @@
         </query>
     </ESAIndexer>
     <ConfigId:ESAAnalyzer>en</ConfigId:ESAAnalyzer>
-    <ESAAnalyzer:kw>
-        <db>sqlite://root:root@localhost/esa_zh.db</db>
-        <lang>zh</lang>
-        <stemmerClass></stemmerClass>
-        <stopWordsFile>res/stopwords.zh.txt</stopWordsFile>
-    </ESAAnalyzer:kw>
     <ESAAnalyzer:en>
-        <db>sqlite://root:root@localhost/esa_db.db</db>
-        <lang>en</lang>
-        <stemmerClass>*porter</stemmerClass>
-        <stopWordsFile>res/stopwords.en.txt</stopWordsFile>
-    </ESAAnalyzer:en>
-    <ESAAnalyzer:ensb>
-        <db>sqlite://root:root@localhost/esa_en.db</db>
+        <db>mysql://root:123456@localhost/wiki</db>
         <lang>en</lang>
         <stemmerClass>org.tartarus.snowball.ext.EnglishStemmer</stemmerClass>
         <stopWordsFile>res/stopwords.en.txt</stopWordsFile>
-    </ESAAnalyzer:ensb>
+    </ESAAnalyzer:en>
 </config>
