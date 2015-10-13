@@ -40,7 +40,8 @@ int main(int argc, char* argv[]) {
 	int c_id, a_id;
 	int curr_c = -1;
 	int c_cntr = 0;
-	while(fscanf(f, "%d %d", &c_id, &a_id) > 0) {
+	float value;
+	while(fscanf(f, "%d %d %f", &c_id, &a_id, &value) > 0) {
 		if(curr_c != c_id) {
 			curr_c = c_id;
 			
