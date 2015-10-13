@@ -255,16 +255,16 @@ char* mapFile(char* fname, int* resFd, long* size, int itemSize) {
 	struct stat statInfo;
 
 	int fd = open(fname, O_RDONLY);
-	printf("errno %d\n", errno);
+//	printf("errno %d\n", errno);
 	if(fd == -1) {
 		perror(fname);
 		return NULL;
 	} else
-		printf("open success: %s\n", fname);
+//		printf("open success: %s\n", fname);
 
 	fstat(fd, &statInfo);
 	long fsize =  (size_t) statInfo.st_size;
-	printf("filesize: %ld\n", (size_t) fsize);
+//	printf("filesize: %ld\n", (size_t) fsize);
 	*size = fsize / itemSize;
 	*resFd = fd;
 	char* res = mmap(0,  fsize, PROT_READ, MAP_PRIVATE, fd, 0);
@@ -317,8 +317,8 @@ char* esa_vector_search(char* searchVector, int * len,
 	int* mem = (int*) mapFile(fn_2index, 
 					&fdMem, &memSize, sizeof(int));
 
-	printf("%ld %ld %ld %ld %ld\n", aSize, cSize, aaSize, ndxSize, memSize);
-	printf("%p %p %p %p %p\n", cmap, amap, a, memNdx, mem);
+//	printf("%ld %ld %ld %ld %ld\n", aSize, cSize, aaSize, ndxSize, memSize);
+//	printf("%p %p %p %p %p\n", cmap, amap, a, memNdx, mem);
 	//printf("c%d a%d n%d m%d\n", cSize, aSize, ndxSize, memSize); 
 
 	//for(i = 0; i < 4000000; i++) printf("a:%d\n", amap[i]);
@@ -336,7 +336,7 @@ char* esa_vector_search(char* searchVector, int * len,
 
 	// filter the articles according to the interesting concepts
 	const int vectorSize = aaSize / aSize; //804;
-	printf("vector size: %d\n", vectorSize);
+//	printf("vector size: %d\n", vectorSize);
 	long cNdx = 0;
 	int resCntr = 0;
 	for(i = 0; i < numberOfConcepts; i++) {
@@ -399,13 +399,13 @@ char* esa_vector_search(char* searchVector, int * len,
 
 	qsort(result + sizeof(int), resCntr, sizeof(struct st_dimension), cmp_dimension);
 
-	/*char* x = result + sizeof(int);
+	char* x = result + sizeof(int);
 	int cursx = 0;
 	for(i = 0; i < min(1000, resCntr); i++) {
 		int concept_id = read_int(x, &cursx);
 		float score = read_float(x, &cursx);
-		//fprintf(stderr, "%d - %f\n", concept_id, score);
-	}*/
+		printf("%d - %f\n", concept_id, score);
+	}
 	
 	// return result
 	*len = min(max_results, resCntr) * resultItemSize + sizeof(int); // resCntr * resultItemSize + sizeof(int);
@@ -414,7 +414,7 @@ char* esa_vector_search(char* searchVector, int * len,
 
 char* get_hex_result(char* vector, int v_size) {
 	char* res = malloc(v_size * 2 + 1);
-	printf("vsize %d\n", v_size);
+//	printf("vsize %d\n", v_size);
 	int i, n;
 	for(i = 0; i < v_size; i++) {
 		n = *((unsigned char*) (vector + i));
@@ -478,8 +478,8 @@ int main(int argc, char* argv[]) {
 				  fn_vectors_ndx, 1000);
 
 	char* hexvector = vector_to_hex(vector);
-	printf("%s", hexvector);
-	printf("\n");
+//	printf("%s", hexvector);
+//	printf("\n");
 	free(vector);
 	free(hexvector);
 	free(searchVector);
