@@ -195,27 +195,28 @@ public class ESASearcher {
             Logger.getLogger(ESAIndexer.class.getName()).log(Level.SEVERE, null, ex);
             return;
         }
-        List<String> concepts = new ArrayList<>();
+
+        IConceptVector cv = null;
         if (args.length == 0) {    // for interactive mode
             InputStreamReader converter = new InputStreamReader(System.in);
             BufferedReader in = new BufferedReader(converter);
             String curLine = null;
             while (curLine != "") {
                 curLine = in.readLine();
-                concepts = searcher.getRelatedConcepts(curLine, searcher, articleIter);
-                for (String concept : concepts) {
-                    System.out.println(concept);
-                }
+                cv = searcher.getConceptVector(curLine);
+                cv = ESASearcher.trim(cv, 100);
             }
         } else if (args.length == 1) {  // for non-interactive mode
-            concepts = searcher.getRelatedConcepts(args[0], searcher, articleIter);
-            for (String concept : concepts) {
-                System.out.println(concept);
-            }
+            cv = searcher.getConceptVector(args[0]);
+            cv = ESASearcher.trim(cv, 100);
         } else {
             System.out.println("Please specify 0 arguments for interactive use, or exactly 1 strings as arguments for non-interactive use.");
         }
 
+        for (Byte i : ESASearcher.buildVector(cv)) {
+            System.out.print(String.format("%02x", i));
+        }
+        System.out.println();
 
     }
 
